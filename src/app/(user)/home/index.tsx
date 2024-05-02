@@ -1,16 +1,32 @@
-import { StyleSheet } from "react-native";
+import { ActivityIndicator, StyleSheet } from "react-native";
 import { Text, View } from "@/src/components/Themed";
 import Container from "@/src/components/Container";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/br";
 import React from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { useGetTodos } from "@/src/api/todos";
+import { Tables } from "@/src/types";
+import { CheckBox } from "react-native-elements";
 
 dayjs.extend(relativeTime);
-dayjs.locale("br");
 
 const HomeScreen = () => {
+  const { data, isLoading, error } = useGetTodos();
+
+  if (isLoading) {
+    return <ActivityIndicator />;
+  }
+
+  if (error) {
+    return (
+      <View>
+        <Text>{error.message}</Text>
+      </View>
+    );
+  }
+
   return (
     <GestureHandlerRootView>
       <Container
@@ -21,8 +37,22 @@ const HomeScreen = () => {
         }}
       >
         <View style={styles.contentContainer}>
-          {/* <TaskSheet /> */}
-          <Text>Home Page</Text>
+          <Text style={{ marginBottom: 30 }}>Todosssss</Text>
+          {data?.map((todo: Tables<"todo">, index) => (
+            <View
+              style={{
+                width: "100%",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <CheckBox checked={todo.completed} />
+              <Text>
+                {index}. {todo.todo}
+              </Text>
+              <Text>{dayjs(new Date(todo.created_at)).fromNow()}</Text>
+            </View>
+          ))}
         </View>
       </Container>
     </GestureHandlerRootView>

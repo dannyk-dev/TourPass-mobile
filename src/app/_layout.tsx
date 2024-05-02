@@ -16,6 +16,7 @@ import {
   Nunito_400Regular,
   Nunito_600SemiBold,
 } from "@expo-google-fonts/dev";
+import QueryProvider from "../providers/QueryProvider";
 
 export { ErrorBoundary } from "expo-router";
 
@@ -57,21 +58,23 @@ function RootLayoutNav() {
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen
-          name="(user)"
-          options={{ headerShown: false, headerTransparent: true }}
-        />
-        <Stack.Screen
-          name="(admin)"
-          options={{ headerShown: false, headerTransparent: true }}
-        />
-        <Stack.Screen
-          name="modal"
-          options={{ presentation: "modal", headerTransparent: true }}
-        />
-      </Stack>
+      <QueryProvider>
+        <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="(user)"
+            options={{ headerShown: false, headerTransparent: true }}
+          />
+          <Stack.Screen
+            name="(admin)"
+            options={{ headerShown: false, headerTransparent: true }}
+          />
+          <Stack.Screen
+            name="modal"
+            options={{ presentation: "modal", headerTransparent: true }}
+          />
+        </Stack>
+      </QueryProvider>
     </ThemeProvider>
   );
 }
