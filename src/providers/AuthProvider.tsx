@@ -35,8 +35,7 @@ export default function AuthProvider({ children }: PropsWithChildren) {
           const { data } = await supabase
             .from("profiles")
             .select("*")
-            .eq("id", session.user.id)
-            .single();
+            .eq("id", session.user.id);
 
           setProfile(data || null);
         }
@@ -64,6 +63,11 @@ export default function AuthProvider({ children }: PropsWithChildren) {
       await fetchProfile(sesh);
     });
   }, []);
+
+  useEffect(() => {
+    console.log(session);
+    console.log(profile);
+  }, [session, profile]);
 
   return (
     <AuthContext.Provider

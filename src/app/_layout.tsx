@@ -18,7 +18,6 @@ import {
 } from "@expo-google-fonts/dev";
 import QueryProvider from "../providers/QueryProvider";
 import AuthProvider from "../providers/AuthProvider";
-
 export { ErrorBoundary } from "expo-router";
 
 export const unstable_settings = {
@@ -67,6 +66,7 @@ function RootLayoutNav() {
               name="(user)"
               options={{ headerShown: false, headerTransparent: true }}
             />
+            <Stack.Screen name="(guest)" options={{ headerShown: false }} />
 
             <Stack.Screen name="(auth)" options={{ headerShown: false }} />
             <Stack.Screen

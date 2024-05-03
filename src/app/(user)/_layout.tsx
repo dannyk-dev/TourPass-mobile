@@ -22,7 +22,6 @@ export default function TabLayout() {
         tabBarActiveTintColor: theme.tabIconSelected,
         tabBarInactiveTintColor: theme.tabIconDefault,
         headerShown: useClientOnlyValue(false, true),
-        // headerTransparent: true,
         headerTintColor: theme.background,
         tabBarStyle: [
           styles.tabBarContainer,

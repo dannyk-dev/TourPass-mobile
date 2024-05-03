@@ -4,12 +4,32 @@ import Container from "@/src/components/Container";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/br";
-import React from "react";
+import React, { useEffect } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { useGetAllHotspotsWithCategory } from "@/src/api/hotspots";
 
 dayjs.extend(relativeTime);
 
 const HomeScreen = () => {
+  const {
+    data: hotspotWithCategories,
+    isLoading,
+    error,
+  } = useGetAllHotspotsWithCategory();
+
+  if (isLoading) {
+    return <ActivityIndicator />;
+  }
+
+  if (error) {
+    alert(error);
+    return;
+  }
+
+  useEffect(() => {
+    console.log(hotspotWithCategories);
+  }, [isLoading]);
+
   return (
     <GestureHandlerRootView>
       <Container

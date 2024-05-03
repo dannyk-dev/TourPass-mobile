@@ -1,22 +1,35 @@
-import { StyleSheet } from "react-native";
+import { ActivityIndicator, StyleSheet } from "react-native";
 import { Text, View } from "@/src/components/Themed";
 import Container from "@/src/components/Container";
 import * as dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/br";
-import React, { useState } from "react";
-import Clock from "@/src/components/Clock";
-import { TimeDataFilters } from "@/src/types";
-import TimeFrameTabs from "@/src/components/TimeFrameTabs";
-import TaskSheet from "@/src/components/TaskSheet";
+import React, { useEffect } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import BottomSheetScrollview from "@/src/components/BottomSheetScrollview";
+import { useGetAllHotspotsWithCategory } from "@/src/api/hotspots";
 
 dayjs.extend(relativeTime);
 dayjs.locale("br");
 
 const HomeScreen = () => {
-  const [timeFilter, setTimeFilter] = useState<TimeDataFilters>("today");
+  const {
+    data: hotspotWithCategories,
+    isLoading,
+    error,
+  } = useGetAllHotspotsWithCategory();
+
+  if (isLoading) {
+    return <ActivityIndicator />;
+  }
+
+  if (error) {
+    alert(error);
+    return;
+  }
+
+  useEffect(() => {
+    console.log(hotspotWithCategories);
+  }, [isLoading]);
 
   return (
     <GestureHandlerRootView>
