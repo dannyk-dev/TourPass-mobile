@@ -17,11 +17,12 @@ import {
   Nunito_600SemiBold,
 } from "@expo-google-fonts/dev";
 import QueryProvider from "../providers/QueryProvider";
+import AuthProvider from "../providers/AuthProvider";
 
 export { ErrorBoundary } from "expo-router";
 
 export const unstable_settings = {
-  initialRouteName: "(dashboard)",
+  initialRouteName: "/",
 };
 
 SplashScreen.preventAutoHideAsync();
@@ -58,23 +59,23 @@ function RootLayoutNav() {
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <QueryProvider>
-        <Stack>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
-          <Stack.Screen
-            name="(user)"
-            options={{ headerShown: false, headerTransparent: true }}
-          />
-          <Stack.Screen
-            name="(admin)"
-            options={{ headerShown: false, headerTransparent: true }}
-          />
-          <Stack.Screen
-            name="modal"
-            options={{ presentation: "modal", headerTransparent: true }}
-          />
-        </Stack>
-      </QueryProvider>
+      <AuthProvider>
+        <QueryProvider>
+          <Stack>
+            <Stack.Screen name="index" options={{ headerShown: false }} />
+            <Stack.Screen
+              name="(user)"
+              options={{ headerShown: false, headerTransparent: true }}
+            />
+
+            <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+            <Stack.Screen
+              name="modal"
+              options={{ presentation: "modal", headerTransparent: true }}
+            />
+          </Stack>
+        </QueryProvider>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

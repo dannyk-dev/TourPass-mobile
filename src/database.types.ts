@@ -9,26 +9,223 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      todo: {
+      categories: {
         Row: {
-          completed: boolean
           created_at: string
-          id: number
-          todo: string
+          description: string
+          id: string
+          name: string
         }
         Insert: {
-          completed?: boolean
           created_at?: string
-          id?: number
-          todo: string
+          description: string
+          id?: string
+          name: string
         }
         Update: {
-          completed?: boolean
           created_at?: string
-          id?: number
-          todo?: string
+          description?: string
+          id?: string
+          name?: string
         }
         Relationships: []
+      }
+      category_hotspots: {
+        Row: {
+          categoryId: string | null
+          created_at: string
+          hotspotId: string | null
+          id: string
+        }
+        Insert: {
+          categoryId?: string | null
+          created_at?: string
+          hotspotId?: string | null
+          id?: string
+        }
+        Update: {
+          categoryId?: string | null
+          created_at?: string
+          hotspotId?: string | null
+          id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "category_hotspots_categoryId_fkey"
+            columns: ["categoryId"]
+            isOneToOne: false
+            referencedRelation: "categories"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "category_hotspots_hotspotId_fkey"
+            columns: ["hotspotId"]
+            isOneToOne: false
+            referencedRelation: "hotspots"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      hotspots: {
+        Row: {
+          building: string | null
+          CEP: string | null
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          profileId: string | null
+          street: string | null
+        }
+        Insert: {
+          building?: string | null
+          CEP?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          profileId?: string | null
+          street?: string | null
+        }
+        Update: {
+          building?: string | null
+          CEP?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          profileId?: string | null
+          street?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "hotspots_profileId_fkey"
+            columns: ["profileId"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      items: {
+        Row: {
+          created_at: string
+          description: string | null
+          hotspotId: string | null
+          id: number
+          name: string
+          quantity: number
+          type: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          hotspotId?: string | null
+          id?: number
+          name: string
+          quantity?: number
+          type: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          hotspotId?: string | null
+          id?: number
+          name?: string
+          quantity?: number
+          type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "items_hotspotId_fkey"
+            columns: ["hotspotId"]
+            isOneToOne: false
+            referencedRelation: "hotspots"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          age: number | null
+          avatar_url: string | null
+          city: string | null
+          cnpj: string | null
+          cpf: string | null
+          full_name: string | null
+          id: string
+          state: string | null
+          type: string
+          updated_at: string | null
+          username: string | null
+        }
+        Insert: {
+          age?: number | null
+          avatar_url?: string | null
+          city?: string | null
+          cnpj?: string | null
+          cpf?: string | null
+          full_name?: string | null
+          id: string
+          state?: string | null
+          type?: string
+          updated_at?: string | null
+          username?: string | null
+        }
+        Update: {
+          age?: number | null
+          avatar_url?: string | null
+          city?: string | null
+          cnpj?: string | null
+          cpf?: string | null
+          full_name?: string | null
+          id?: string
+          state?: string | null
+          type?: string
+          updated_at?: string | null
+          username?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "profiles_id_fkey"
+            columns: ["id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      rating: {
+        Row: {
+          comment: string | null
+          created_at: string
+          hotspotId: string | null
+          id: number
+          score: number
+        }
+        Insert: {
+          comment?: string | null
+          created_at?: string
+          hotspotId?: string | null
+          id?: number
+          score: number
+        }
+        Update: {
+          comment?: string | null
+          created_at?: string
+          hotspotId?: string | null
+          id?: number
+          score?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "rating_hotspotId_fkey"
+            columns: ["hotspotId"]
+            isOneToOne: false
+            referencedRelation: "hotspots"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {

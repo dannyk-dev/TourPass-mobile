@@ -1,12 +1,26 @@
-import { Image, StyleSheet } from "react-native";
+import { ActivityIndicator, Image, StyleSheet } from "react-native";
 import React from "react";
 import { View, Text } from "../components/Themed";
-import { Link } from "expo-router";
+import { Link, Redirect } from "expo-router";
 import Button from "../components/Button";
 import { useTheme } from "../hooks";
+import { useAuth } from "../providers/AuthProvider";
 
 const index = () => {
+  const { session, loading, isAdmin } = useAuth();
   const theme = useTheme();
+
+  if (loading) {
+    return <ActivityIndicator />;
+  }
+
+  if (session) {
+    return <Redirect href="/(user)/home/" />;
+  }
+
+  // if (!isAdmin) {
+  //   return <Redirect href="/(user)/home/" />;
+  // }
 
   return (
     <View style={[styles.container, { backgroundColor: theme.background }]}>
@@ -27,7 +41,7 @@ const index = () => {
                 fontSize: 20,
               }}
             >
-              persona.io
+              TourPas
             </Text>
           </Link>
         </View>
@@ -38,17 +52,18 @@ const index = () => {
           </Text>
         </View>
         <Link href="/(user)/home" asChild>
-          <Button text="Let's get organized!" style={{}} />
+          <Button text="Login as Guest" style={{}} />
         </Link>
         <Link
-          href="/(admin)/home"
+          href="/sign-up"
           style={{
             marginTop: 15,
             fontSize: 20,
             textDecorationLine: "underline",
           }}
+          asChild
         >
-          <Text>Are you an Admin? </Text>
+          <Button text="Create an account" />
         </Link>
       </View>
     </View>

@@ -34,7 +34,7 @@ export default function TabLayout() {
         tabBarActiveBackgroundColor: "rgba(255, 255, 255, 0.2)",
       }}
     >
-      {/* <Tabs.Screen name='index' options={{ href: null }} /> */}
+      {/* <Tabs.Screen name="index" options={{ href: null }} /> */}
       <Tabs.Screen
         name="home"
         options={{

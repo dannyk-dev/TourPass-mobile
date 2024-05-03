@@ -13,20 +13,6 @@ import { CheckBox } from "react-native-elements";
 dayjs.extend(relativeTime);
 
 const HomeScreen = () => {
-  const { data, isLoading, error } = useGetTodos();
-
-  if (isLoading) {
-    return <ActivityIndicator />;
-  }
-
-  if (error) {
-    return (
-      <View>
-        <Text>{error.message}</Text>
-      </View>
-    );
-  }
-
   return (
     <GestureHandlerRootView>
       <Container
@@ -37,22 +23,7 @@ const HomeScreen = () => {
         }}
       >
         <View style={styles.contentContainer}>
-          <Text style={{ marginBottom: 30 }}>Todosssss</Text>
-          {data?.map((todo: Tables<"todo">, index) => (
-            <View
-              style={{
-                width: "100%",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <CheckBox checked={todo.completed} />
-              <Text>
-                {index}. {todo.todo}
-              </Text>
-              <Text>{dayjs(new Date(todo.created_at)).fromNow()}</Text>
-            </View>
-          ))}
+          <Text style={{ marginBottom: 30 }}>Hello World</Text>
         </View>
       </Container>
     </GestureHandlerRootView>
