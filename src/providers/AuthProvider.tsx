@@ -60,14 +60,9 @@ export default function AuthProvider({ children }: PropsWithChildren) {
       setLoading(true);
 
       setSession(sesh);
-      await fetchProfile(sesh);
+      // await fetchProfile(sesh);
     });
   }, []);
-
-  useEffect(() => {
-    console.log(session);
-    console.log(profile);
-  }, [session, profile]);
 
   return (
     <AuthContext.Provider

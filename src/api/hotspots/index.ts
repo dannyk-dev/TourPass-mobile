@@ -24,8 +24,7 @@ export function useGetAllHotspotsWithCategory() {
       ).select(`
         *,
         category_hotspots (
-          id,
-          name
+          id
         ) 
       `);
 

@@ -27,9 +27,7 @@ const HomeScreen = () => {
     return;
   }
 
-  useEffect(() => {
-    console.log(hotspotWithCategories);
-  }, [isLoading]);
+  console.log(hotspotWithCategories);
 
   return (
     <GestureHandlerRootView>
