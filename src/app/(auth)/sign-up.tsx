@@ -58,7 +58,7 @@ const SignUpScreen = () => {
         disabled={loading}
         onPress={SignUpWithEmail}
       />
-      <Link href="/" style={styles.textButton}>
+      <Link href="/login" style={styles.textButton}>
         Already have an account?
       </Link>
     </View>
