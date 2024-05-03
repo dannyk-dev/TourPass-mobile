@@ -6,9 +6,6 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/br";
 import React from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { useGetTodos } from "@/src/api/todos";
-import { Tables } from "@/src/types";
-import { CheckBox } from "react-native-elements";
 
 dayjs.extend(relativeTime);
 

@@ -14,13 +14,9 @@ const index = () => {
     return <ActivityIndicator />;
   }
 
-  if (session) {
-    return <Redirect href="/(user)/home/" />;
+  if (!session) {
+    return <Redirect href="/sign-up" />;
   }
-
-  // if (!isAdmin) {
-  //   return <Redirect href="/(user)/home/" />;
-  // }
 
   return (
     <View style={[styles.container, { backgroundColor: theme.background }]}>
