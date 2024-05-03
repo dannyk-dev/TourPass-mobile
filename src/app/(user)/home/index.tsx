@@ -4,7 +4,7 @@ import Container from "@/src/components/Container";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/br";
-import React, { useEffect } from "react";
+import React from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useGetAllHotspotsWithCategory } from "@/src/api/hotspots";
 
@@ -25,10 +25,6 @@ const HomeScreen = () => {
     alert(error);
     return;
   }
-
-  useEffect(() => {
-    console.log(hotspotWithCategories);
-  }, [isLoading]);
 
   return (
     <GestureHandlerRootView>

@@ -26,13 +26,14 @@ export default function TabLayout() {
         tabBarStyle: [
           styles.tabBarContainer,
           {
-            backgroundColor: theme.tabBarBackground,
+            backgroundColor: theme.tint,
           },
         ],
         tabBarItemStyle: styles.tabItemStyle,
         tabBarActiveBackgroundColor: "rgba(255, 255, 255, 0.2)",
       }}
     >
+      <Tabs.Screen name="index" options={{ href: null }} />
       <Tabs.Screen
         name="home"
         options={{
@@ -46,9 +47,7 @@ export default function TabLayout() {
         name="calendar"
         options={{
           title: "Calendar",
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="calendar" color={color} />
-          ),
+          tabBarIcon: ({ color }) => <TabBarIcon name="map" color={color} />,
           tabBarShowLabel: false,
           headerShown: false,
         }}

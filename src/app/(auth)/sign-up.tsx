@@ -78,7 +78,7 @@ const SignUpScreen = () => {
       <Link href="/login" style={styles.textButton}>
         Already have an account?
       </Link>
-      <Link href="/(guest)/" style={styles.textButton}>
+      <Link href="/(guest)" style={styles.textButton}>
         Enter as Guest
       </Link>
     </View>

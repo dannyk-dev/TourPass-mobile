@@ -31,17 +31,9 @@ const HomeScreen = () => {
 
   return (
     <GestureHandlerRootView>
-      <Container
-        primaryContainerStyle={{
-          justifyContent: "center",
-          position: "relative",
-          width: "100%",
-        }}
-      >
-        <View style={styles.contentContainer}>
-          <Text>Admin Home Page</Text>
-        </View>
-      </Container>
+      <View style={styles.contentContainer}>
+        <Text>Admin Home Page</Text>
+      </View>
     </GestureHandlerRootView>
   );
 };

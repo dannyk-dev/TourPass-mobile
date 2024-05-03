@@ -1,3 +1,4 @@
+import { Tables } from "@/src/database.types";
 import { supabase } from "@/src/lib/supabase";
 import { useQuery } from "react-query";
 

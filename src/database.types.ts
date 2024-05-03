@@ -12,19 +12,19 @@ export type Database = {
       categories: {
         Row: {
           created_at: string
-          description: string
+          description: string | null
           id: string
           name: string
         }
         Insert: {
           created_at?: string
-          description: string
+          description?: string | null
           id?: string
           name: string
         }
         Update: {
           created_at?: string
-          description?: string
+          description?: string | null
           id?: string
           name?: string
         }
@@ -69,6 +69,7 @@ export type Database = {
       hotspots: {
         Row: {
           building: string | null
+          categories: string[] | null
           CEP: string | null
           created_at: string
           description: string | null
@@ -79,6 +80,7 @@ export type Database = {
         }
         Insert: {
           building?: string | null
+          categories?: string[] | null
           CEP?: string | null
           created_at?: string
           description?: string | null
@@ -89,6 +91,7 @@ export type Database = {
         }
         Update: {
           building?: string | null
+          categories?: string[] | null
           CEP?: string | null
           created_at?: string
           description?: string | null

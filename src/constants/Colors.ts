@@ -8,8 +8,8 @@ export default {
   light: {
     text: "#3E3F3B",
     // background: '#F7FFF7',
-    background: "#8AA29E",
-    backgroundPrimary: "#E3F2FD",
+    background: "#fefefe",
+    // backgroundPrimary: "#E3F2FD",
     tint: tintColorLight,
     tabIconDefault: "#ccc",
     tabIconSelected: "#D9EFFC",
